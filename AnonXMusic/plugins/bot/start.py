@@ -9,7 +9,6 @@ import config
 from AnonXMusic import app
 from AnonXMusic.misc import _boot_
 from AnonXMusic.plugins.sudo.sudoers import sudoers_list
-from AnonXMusic.plugins.additions.keyboard import devs
 from AnonXMusic.utils.database import (
     add_served_chat,
     add_served_user,
@@ -25,7 +24,7 @@ from config import BANNED_USERS
 from strings import get_string
 
 
-@app.on_message(filters.command(["start"]) & filters.private & ~devs & ~BANNED_USERS)
+@app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
@@ -99,7 +98,7 @@ async def start_pm(client, message: Message, _):
         if await is_on_off(2):
             return await app.send_message(
                 chat_id=config.LOGGER_ID,
-                text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                text=f"<b>• في حد دخل البوت◟</b>\n\n<b>• اسمة :{message.from_user.mention}\n<b>• اسمة :</b> <code>{message.from_user.id}</code>\n<b>• اليوزر :</b> @{message.from_user.username}",
             )
 
 
