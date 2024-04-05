@@ -9,7 +9,7 @@ import config
 from AnonXMusic import app
 from AnonXMusic.misc import _boot_
 from AnonXMusic.plugins.sudo.sudoers import sudoers_list
-from AnonXMusic.plugins.additions.keyboard import devs
+from AnonXMusic.plugins.play.keyboard import devs
 from AnonXMusic.utils.database import (
     add_served_chat,
     add_served_user,
