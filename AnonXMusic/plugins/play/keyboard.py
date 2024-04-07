@@ -13,33 +13,33 @@ devs = filters.user([6810952789,6199134030,OWNER_ID])
 async def start_dev(c, msg):
     keyboard = ReplyKeyboardMarkup([[("• حذف الكيبورد •")], [("• مطور السورس •")], [("• قسم الاحصائيات •"), ("• قسم المساعد •")], [("• قسم الاشتراك الاجباري •"), ("• قسم الاذاعه •")], [("• اعادة التشغيل •")], [("• الغاء •")]], resize_keyboard=True)
     await msg.reply("<b>صلي على النبي وتبسم ♥️✨</b>")
-    await msg.reply("• اهلا بك حبيبي المطور◟", reply_markup = keyboard)
+    await msg.reply("<b>• اهلا بك حبيبي المطور◟</b>", reply_markup = keyboard)
     
 @app.on_message(filters.command(["• حذف الكيبورد •"],"") & filters.private & devs, group = 2)
 async def delete_keyboard(c,msg):
-    await msg.reply("• تم ازالة الكيبورد عزيزي المطور ◟", reply_markup = ReplyKeyboardRemove())
+    await msg.reply("<b>• تم ازالة الكيبورد عزيزي المطور ◟</b>", reply_markup = ReplyKeyboardRemove())
 
 @app.on_message(filters.command(["• قسم الاحصائيات •"],"") & filters.private & devs, group = 2)
 async def stats_bot(c,msg):
-    await msg.reply("• اهلا بك عزيزي المطور بقسم الاحصائيات ◟", reply_markup = ReplyKeyboardMarkup([[("• الجروبات •"), ("• المستخدمين •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("<b>• اهلا بك عزيزي المطور بقسم الاحصائيات ◟</b>", reply_markup = ReplyKeyboardMarkup([[("• الجروبات •"), ("• المستخدمين •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
     
 @app.on_message(filters.command(["• قسم المساعد •"],"") & filters.private & devs, group = 2)
 async def asisstant_bot(c,msg):
-    await msg.reply("• اهلا بك عزيزي المطور بقسم الاك المساعد ◟", reply_markup = ReplyKeyboardMarkup([[("• تغيير الاسم الاول •"), ("• تغيير الاسم الثاني •")], [("• تغيير البايو •")], [("• اضف صورة •"), ("• مسح الصورة •")], [("• اذاعة •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("<b>• اهلا بك عزيزي المطور بقسم الاك المساعد ◟</b>", reply_markup = ReplyKeyboardMarkup([[("• تغيير الاسم الاول •"), ("• تغيير الاسم الثاني •")], [("• تغيير البايو •")], [("• اضف صورة •"), ("• مسح الصورة •")], [("• اذاعة •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
 
 @app.on_message(filters.command(["• قسم الاشتراك الاجباري •"],"") & filters.private & devs, group = 2)
 async def force_sub_bot(c,msg):
-    await msg.reply("• اهلا بك عزيزي المطور بقسم الاشتراك الاجباري ◟", reply_markup = ReplyKeyboardMarkup([[("• قناة الاشتراك •")], [("• اضف قناة/جروب •"), ("• حذف القناه/الجروب •")], [("• تفعيل الاشتراك •"), ("• تعطيل الاشتراك •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("<b>• اهلا بك عزيزي المطور بقسم الاشتراك الاجباري ◟</b>", reply_markup = ReplyKeyboardMarkup([[("• قناة الاشتراك •")], [("• اضف قناة/جروب •"), ("• حذف القناه/الجروب •")], [("• تفعيل الاشتراك •"), ("• تعطيل الاشتراك •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
 
 @app.on_message(filters.command(["• قسم الاذاعه •"],"") & filters.private & devs, group = 2)
 async def broadcast_bot(c,msg):
-    await msg.reply("• اهلا بك عزيزي المطور بقسم الاذاعه ◟", reply_markup = ReplyKeyboardMarkup([[("• للجروبات •"), ("• للمستخدمين •")], [("• بالتوجيه للجروبات •"), ("• بالتوجيه للمستخدمين •")], [("• ترويج البوت •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("<b>• اهلا بك عزيزي المطور بقسم الاذاعه ◟</b>", reply_markup = ReplyKeyboardMarkup([[("• للجروبات •"), ("• للمستخدمين •")], [("• بالتوجيه للجروبات •"), ("• بالتوجيه للمستخدمين •")], [("• ترويج البوت •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
 
 @app.on_message(filters.command(["• رجوع للقائمة الرئيسية •"],"") & filters.private & devs, group = 2)
 async def return_bot(c,msg):
     keyboard = ReplyKeyboardMarkup([[("• حذف الكيبورد •")], [("• مطور السورس •")], [("• قسم الاحصائيات •"), ("• قسم المساعد •")], [("• قسم الاشتراك الاجباري •"), ("• قسم الاذاعه •")], [("• اعادة التشغيل •")], [("• الغاء •")]], resize_keyboard=True)
     await msg.reply("<b>صلي على النبي وتبسم ♥️✨</b>")
-    await msg.reply("• اهلا بك حبيبي المطور◟", reply_markup = keyboard)
+    await msg.reply("<b>• اهلا بك حبيبي المطور◟</b>", reply_markup = keyboard)
 
 @app.on_message(filters.command(["• الجروبات •", "• المستخدمين •"],"") & filters.private & devs, group = 2)
 async def stat_bot(c,msg):
@@ -54,20 +54,20 @@ async def stat_bot(c,msg):
 async def acc_bot(c,msg):
     if msg.text == "• اضف صورة •":
         try:
-            m = await c.ask(msg.chat.id, "• قم بإرسال الصوره عزيزي المطور ◟")
+            m = await c.ask(msg.chat.id, "<b>• قم بإرسال الصوره عزيزي المطور ◟</b>")
             if m.text == "• اضف صورة •":
-                m = await c.ask(msg.chat.id, "•عذرا قم بإرسال صورة عزيزي المطور ◟")
+                m = await c.ask(msg.chat.id, "<b>•عذرا قم بإرسال صورة عزيزي المطور ◟</b>")
             photo = await m.download()
             client = await get_client(1)
             await client.set_profile_photo(photo=photo)
-            await msg.reply("• تم تغيير الصورة بنجاح ◟")
+            await msg.reply("<b>• تم تغيير الصورة بنجاح ◟</b>")
         except Exception as e:
             await msg.reply(f"- حدث خطا -> {e}")
     elif msg.text == "• تغيير البايو •":
         try:
             m = await c.ask(msg.chat.id, "• قم بإرسال البايو عزيزي المطور ◟")
             if m.text == "• تغيير البايو •":
-                m = await c.ask(msg.chat.id, "•عذرا قم بإرسال نص البايو عزيزي المطور ◟")
+                m = await c.ask(msg.chat.id, "<b>•عذرا قم بإرسال نص البايو عزيزي المطور ◟</b>")
             client = await get_client(1)
             await client.update_profile(bio=m.text)
             await msg.reply("• تم تغيير البايو بنجاح ◟")
@@ -75,22 +75,22 @@ async def acc_bot(c,msg):
             await msg.reply(f"- حدث خطا -> {e}")
     elif msg.text == "• تغيير الاسم الاول •":
         try:
-            m = await c.ask(msg.chat.id, "• قم بإرسال الاسم عزيزي المطور ◟")
+            m = await c.ask(msg.chat.id, "<b>• قم بإرسال الاسم عزيزي المطور ◟</b>")
             if m.text == "• تغيير الاسم الاول •":
-                m = await c.ask(msg.chat.id, "•عذرا قم بإرسال نص الاسم عزيزي المطور ◟")
+                m = await c.ask(msg.chat.id, "<b>•عذرا قم بإرسال نص الاسم عزيزي المطور ◟</b>")
             client = await get_client(1)
             await client.update_profile(first_name=m.text)
-            await msg.reply("• تم تغيير الاسم الاول بنجاح ◟")
+            await msg.reply("<b>• تم تغيير الاسم الاول بنجاح ◟</b>")
         except Exception as e:
             await msg.reply(f"- حدث خطا -> {e}")
     elif msg.text == "• تغيير الاسم الثاني •":
         try:
-            m = await c.ask(msg.chat.id, "• قم بإرسال الاسم عزيزي المطور ◟")
+            m = await c.ask(msg.chat.id, "<b>• قم بإرسال الاسم عزيزي المطور ◟</b>")
             if m.text == "• تغيير الاسم الثاني •":
-                m = await c.ask(msg.chat.id, "•عذرا قم بإرسال نص الاسم عزيزي المطور ◟")
+                m = await c.ask(msg.chat.id, "<b>• عذرا قم بإرسال نص الاسم عزيزي المطور ◟</b>")
             client = await get_client(1)
             await client.update_profile(last_name=m.text)
-            await msg.reply("• تم تغيير الاسم التاني بنجاح ◟")
+            await msg.reply("<b>• تم تغيير الاسم التاني بنجاح ◟</b>")
         except Exception as e:
             await msg.reply(f"- حدث خطا -> {e}")
     else:
@@ -99,7 +99,7 @@ async def acc_bot(c,msg):
             try:
                 async for photo in client.get_chat_photos("me", limit = 1):
                     await client.delete_profile_photos(photo.file_id)
-                await msg.reply("• تم حذف صورة من الحساب المساعد بنجاح◟")
+                await msg.reply("<b>• تم حذف صورة من الحساب المساعد بنجاح◟</b>")
             except Exception as e:
                 await msg.reply(f"- حدث خطا -> {e}")
         else:
