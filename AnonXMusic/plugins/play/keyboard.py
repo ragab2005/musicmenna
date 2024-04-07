@@ -189,12 +189,12 @@ async def dev_source(c,msg):
     else:
         user_id = 6199134030
     user = await c.get_users(user_id)
-    text = f"• 𝖭𝖺𝗆𝖾 : {user.mention}\n• 𝗂𝖣 : {user_id}"
+    text = f"<b>• 𝖭𝖺𝗆𝖾 : {user.mention}</b>\n<b>• 𝗂𝖣 : {user_id}</b>"
     if user.username:
-        text += f"\n• 𝖴𝗌𝖾r : @{user.username}"
+        text += f"\n<b>• 𝖴𝗌𝖾r : @{user.username}</b>"
     chat = await c.get_chat(user_id)
     if chat.bio:
-        text += f"\n•𝖡𝗂𝗈 :{chat.bio}"
+        text += f"\n<b>•𝖡𝗂𝗈 :{chat.bio}</b>"
     if user.photo:
         async for photo in app.get_chat_photos(user_id,limit=1):
             await msg.reply_photo(photo.file_id, caption=text)
@@ -203,7 +203,7 @@ async def dev_source(c,msg):
 
 @app.on_message(filters.command(["• اعادة التشغيل •"],"") & filters.private & devs, group = 2)
 async def restart_(c,msg):
-    response = await msg.reply_text("جاري اعادة التشغيل...")
+    response = await msg.reply_text("<b>جاري اعادة التشغيل...</b>")
     ac_chats = await get_active_chats()
     for x in ac_chats:
         try:
