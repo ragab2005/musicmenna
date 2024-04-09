@@ -14,7 +14,7 @@ async def huhh(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "Dev¹", url=6810952789),
+                        "Dev¹", user_id=6810952789),
                     InlineKeyboardButton(
                         "Dev²", user_id=6199134030),
                 ],
