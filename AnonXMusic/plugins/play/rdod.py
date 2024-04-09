@@ -8,19 +8,19 @@ from config import OWNER_ID, SUPPORT_CHANNEL, SUPPORT_CHAT
 
 async def huhh(client: Client, message: Message): 
     await message.reply_photo(
-        photo=f"https://telegra.ph/file/3f3e8043368a35b98fa78.jpg",
+        photo=f"https://telegra.ph/file/ec97bc478ff7f1a3f30c7.jpg",
         caption=f"• 𝗧𝗵𝗲 𝗕𝗲𝘀𝘁 𝗦𝗼𝘂𝗿𝗰𝗲 𝗢𝗻 𝗧𝗲𝗹𝗲𝗴𝗮𝗺 🎸 .",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "- 𝖲𝗈𝖴𝖱𝖢𝖾 .", url=SUPPORT_CHANNEL),
+                        "Dev¹", url=6810952789),
                     InlineKeyboardButton(
-                        "- Help .", url=SUPPORT_CHAT),
+                        "Dev²", user_id=6199134030),
                     
                 ],[
                     InlineKeyboardButton(
-                        "- DeVeLoPeRS .", callback_data=f"developers {message.from_user.id}" if message.chat.type != ChatType.CHANNEL else "developers ch"),
+                        "𓏺 𝖲𝗈𝗎𝗋𝖼𝖾 𝖡𝗋𝖺𝗇𝖽 .", url="https://t.me/uo_vn"),
                 ],
 
             ]
