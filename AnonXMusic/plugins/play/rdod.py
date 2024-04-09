@@ -17,6 +17,8 @@ async def huhh(client: Client, message: Message):
                         "Dev¹", user_id=6810952789),
                     InlineKeyboardButton(
                         "Dev²", user_id=6199134030),
+                ],
+                [
                     
                     InlineKeyboardButton(
                         "𓏺 𝖲𝗈𝗎𝗋𝖼𝖾 𝖡𝗋𝖺𝗇𝖽 .", url="https://t.me/uo_vn"),
