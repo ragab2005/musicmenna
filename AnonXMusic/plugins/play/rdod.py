@@ -8,7 +8,7 @@ from config import OWNER_ID, SUPPORT_CHANNEL, SUPPORT_CHAT
 
 async def huhh(client: Client, message: Message): 
     await message.reply_photo(
-        photo=f"https://telegra.ph/file/ec97bc478ff7f1a3f30c7.jpg",
+        photo=f"https://telegra.ph/file/ce26e7b9ee1310efdaa1a.jpg",
         caption=f"• 𝗧𝗵𝗲 𝗕𝗲𝘀𝘁 𝗦𝗼𝘂𝗿𝗰𝗲 𝗢𝗻 𝗧𝗲𝗹𝗲𝗴𝗮𝗺 🎸 .",
         reply_markup=InlineKeyboardMarkup(
             [
