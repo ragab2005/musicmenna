@@ -359,7 +359,7 @@ async def stream(
                 photo=img,
                 caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{vidid}",
-                    title[:23],
+                    title,
                     duration_min,
                     user_name,
                 ),
