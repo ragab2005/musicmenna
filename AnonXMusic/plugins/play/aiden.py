@@ -65,7 +65,8 @@ async def dev(client: Client, message: Message):
        os.remove(photo)
      except:
         pass
-          t sys
+import re
+import sys
 from os import getenv
 
 from dotenv import load_dotenv
