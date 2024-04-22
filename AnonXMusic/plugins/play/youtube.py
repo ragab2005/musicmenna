@@ -30,7 +30,7 @@ async def download_song(c,msg):
       ytdl_data = ytdl.extract_info(link,download=True)
       file_name = ytdl.prepare_filename(ytdl_data)
     
-    rep = f"<b>• {title}</b>\n<b>• powered by : @lPlJI</b>"
+    rep = f"<b>• {title}</b>\n<b>• powered by : @B_U_P</b>"
     secmul, dur, dur_arr = 1, 0, duration.split(":")
     for i in range(len(dur_arr) - 1, -1, -1):
         dur += int(dur_arr[i]) * secmul
