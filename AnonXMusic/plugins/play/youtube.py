@@ -6,7 +6,7 @@ from youtube_search import YoutubeSearch
 from AnonXMusic import app
 import os
 
-@app.on_message(filters.command(['نزل','تنزيل','حمل','تحميل'],""))
+@app.on_message(filters.command(['نزل','حمل'],""))
 async def download_song(c,msg):
   if msg.text == 'حمل' or msg.text == "نزل":
     return await msg.edit(f'<b> يجب كتابة {msg.text} + اسم الصوت الذي تريد تحميله</b>')
