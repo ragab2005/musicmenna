@@ -31,6 +31,7 @@ from config import (
     adminlist,
     confirmer,
     votemode,
+    OWNER_ID
 )
 from strings import get_string
 
@@ -417,12 +418,15 @@ async def markup_timer():
                     _ = get_string(language)
                 except:
                     _ = get_string("en")
+                name = (await app.get_users(int(OWNER_ID))).frist_name
                 try:
                     buttons = stream_markup_timer(
                         _,
                         chat_id,
                         seconds_to_min(playing[0]["played"]),
                         playing[0]["dur"],
+                        name,
+                        int(OWNER_ID)
                     )
                     await mystic.edit_reply_markup(
                         reply_markup=InlineKeyboardMarkup(buttons)
