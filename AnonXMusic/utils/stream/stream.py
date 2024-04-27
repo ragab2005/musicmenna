@@ -99,7 +99,7 @@ async def stream(
                     forceplay=forceplay,
                 )
                 img = await get_thumb(vidid)
-                name = (await app.get_users(int(config.OWNER_ID))).frist_name
+                name = (await app.get_users(int(config.OWNER_ID))).first_name
                 button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
                 run = await app.send_photo(
                     original_chat_id,
@@ -186,7 +186,7 @@ async def stream(
                 forceplay=forceplay,
             )
             img = await get_thumb(vidid)
-            name = (await app.get_users(int(config.OWNER_ID))).frist_name
+            name = (await app.get_users(int(config.OWNER_ID))).first_name
             button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
             run = await app.send_photo(
                 original_chat_id,
@@ -240,7 +240,7 @@ async def stream(
                 "audio",
                 forceplay=forceplay,
             )
-            name = (await app.get_users(int(config.OWNER_ID))).frist_name
+            name = (await app.get_users(int(config.OWNER_ID))).first_name
             button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
             run = await app.send_photo(
                 original_chat_id,
@@ -295,7 +295,7 @@ async def stream(
             )
             if video:
                 await add_active_video_chat(chat_id)
-            name = (await app.get_users(int(config.OWNER_ID))).frist_name
+            name = (await app.get_users(int(config.OWNER_ID))).first_name
             button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
             run = await app.send_photo(
                 original_chat_id,
@@ -357,7 +357,7 @@ async def stream(
                 forceplay=forceplay,
             )
             img = await get_thumb(vidid)
-            name = (await app.get_users(int(config.OWNER_ID))).frist_name
+            name = (await app.get_users(int(config.OWNER_ID))).first_name
             button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
             run = await app.send_photo(
                 original_chat_id,
@@ -413,7 +413,7 @@ async def stream(
                 "video" if video else "audio",
                 forceplay=forceplay,
             )
-            name = (await app.get_users(int(config.OWNER_ID))).frist_name
+            name = (await app.get_users(int(config.OWNER_ID))).first_name
             button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
             run = await app.send_photo(
                 original_chat_id,
