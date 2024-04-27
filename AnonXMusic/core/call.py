@@ -392,7 +392,7 @@ class Call(PyTgCalls):
                         text=_["call_6"],
                     )
                 img = await get_thumb(videoid)
-                name = (await app.get_users(int(config.OWNER_ID))).frist_name
+                name = (await app.get_users(int(config.OWNER_ID))).first_name
                 button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
                 run = await app.send_photo(
                     chat_id=original_chat_id,
@@ -439,7 +439,7 @@ class Call(PyTgCalls):
                         text=_["call_6"],
                     )
                 img = await get_thumb(videoid)
-                name = (await app.get_users(int(config.OWNER_ID))).frist_name
+                name = (await app.get_users(int(config.OWNER_ID))).first_name
                 button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
                 await mystic.delete()
                 run = await app.send_photo(
@@ -472,7 +472,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_6"],
                     )
-                name = (await app.get_users(int(config.OWNER_ID))).frist_name
+                name = (await app.get_users(int(config.OWNER_ID))).first_name
                 button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
                 run = await app.send_photo(
                     chat_id=original_chat_id,
@@ -502,7 +502,7 @@ class Call(PyTgCalls):
                         text=_["call_6"],
                     )
                 if videoid == "telegram":
-                    name = (await app.get_users(int(config.OWNER_ID))).frist_name
+                    name = (await app.get_users(int(config.OWNER_ID))). first_name
                     button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
                     run = await app.send_photo(
                         chat_id=original_chat_id,
@@ -517,7 +517,7 @@ class Call(PyTgCalls):
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "tg"
                 elif videoid == "soundcloud":
-                    name = (await app.get_users(int(config.OWNER_ID))).frist_name
+                    name = (await app.get_users(int(config.OWNER_ID))).first_name
                     button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
                     run = await app.send_photo(
                         chat_id=original_chat_id,
@@ -531,7 +531,7 @@ class Call(PyTgCalls):
                     db[chat_id][0]["markup"] = "tg"
                 else:
                     img = await get_thumb(videoid)
-                    name = (await app.get_users(int(config.OWNER_ID))).frist_name
+                    name = (await app.get_users(int(config.OWNER_ID))).first_name
                     button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
                     run = await app.send_photo(
                         chat_id=original_chat_id,
