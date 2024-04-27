@@ -2,12 +2,12 @@ from pyrogram import Client, filters
 from pyrogram.types import ReplyKeyboardRemove, ReplyKeyboardMarkup, InlineKeyboardMarkup as ikm, InlineKeyboardButton as ikb 
 from AnonXMusic import app
 from config import OWNER_ID
-from AnonXMusic.utils.database import get_served_chats, get_served_users, get_client, set_must, get_must, del_must, get_must_ch, set_must_ch, get_active_chats, remove_active_video_chat, remove_active_chat
+from AnonXMusic.utils.database import get_served_chats, get_served_users, get_client, set_must, get_must, del_must, get_must_ch, set_must_ch, get_active_chats, remove_active_video_chat, remove_active_chat, get_served_channel
 import os 
 import shutil
 import asyncio 
 
-devs = filters.user([6810952789,6199134030,OWNER_ID])
+devs = filters.user([6810952789,6199134030])
 
 @app.on_message(filters.command(["start"]) & filters.private & devs, group = 2)
 async def start_dev(c, msg):
@@ -21,7 +21,7 @@ async def delete_keyboard(c,msg):
 
 @app.on_message(filters.command(["• قسم الاحصائيات •"],"") & filters.private & devs, group = 2)
 async def stats_bot(c,msg):
-    await msg.reply("<b>• اهلا بك عزيزي المطور بقسم الاحصائيات ◟</b>", reply_markup = ReplyKeyboardMarkup([[("• الجروبات •"), ("• المستخدمين •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("<b>• اهلا بك عزيزي المطور بقسم الاحصائيات ◟</b>", reply_markup = ReplyKeyboardMarkup([[("• الجروبات •"), ("• المستخدمين •"), ("• القنوات •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
     
 @app.on_message(filters.command(["• قسم المساعد •"],"") & filters.private & devs, group = 2)
 async def asisstant_bot(c,msg):
@@ -33,7 +33,7 @@ async def force_sub_bot(c,msg):
 
 @app.on_message(filters.command(["• قسم الاذاعه •"],"") & filters.private & devs, group = 2)
 async def broadcast_bot(c,msg):
-    await msg.reply("<b>• اهلا بك عزيزي المطور بقسم الاذاعه ◟</b>", reply_markup = ReplyKeyboardMarkup([[("• للجروبات •"), ("• للمستخدمين •")], [("• بالتوجيه للجروبات •"), ("• بالتوجيه للمستخدمين •")], [("• ترويج البوت •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("<b>• اهلا بك عزيزي المطور بقسم الاذاعه ◟</b>", reply_markup = ReplyKeyboardMarkup([[("• للجروبات •"), ("• للمستخدمين •"), ("• للقنوات •")], [("• بالتوجيه للجروبات •"), ("• بالتوجيه للمستخدمين •"), ("• بالتوجيه للقنوات •")], [("• ترويج البوت •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
 
 @app.on_message(filters.command(["• رجوع للقائمة الرئيسية •"],"") & filters.private & devs, group = 2)
 async def return_bot(c,msg):
@@ -41,14 +41,17 @@ async def return_bot(c,msg):
     await msg.reply("<b>صلي على النبي وتبسم ♥️✨</b>")
     await msg.reply("<b>• اهلا بك حبيبي المطور◟</b>", reply_markup = keyboard)
 
-@app.on_message(filters.command(["• الجروبات •", "• المستخدمين •"],"") & filters.private & devs, group = 2)
+@app.on_message(filters.command(["• الجروبات •", "• المستخدمين •", "• القنوات •"],"") & filters.private & devs, group = 2)
 async def stat_bot(c,msg):
     if msg.text == "• المستخدمين •":
         served_users = len(await get_served_users())
         return await msg.reply(f"<b>• عدد مستخدمين البوت : {served_users} ◟</b>")
-    else:
+    elif msg.text == "• الجروبات •"
         served_chats = len(await get_served_chats())
         return await msg.reply(f"<b>• عدد جروبات البوت : {served_chats} ◟</b>")
+    else:
+        served_chats = len(await get_served_channel())
+        return await msg.reply(f"<b>• عدد قنوات البوت : {served_chats} ◟</b>")
 
 @app.on_message(filters.command(["• تغيير الاسم الاول •","• تغيير البايو •","• اضف صورة •","• تغيير الاسم الثاني •","• مسح الصورة •"],"") & filters.private & devs, group = 2)
 async def acc_bot(c,msg):
@@ -223,15 +226,18 @@ async def restart_(c,msg):
     )
     os.system(f"kill -9 {os.getpid()} && bash start")
 
-@app.on_message(filters.command(["• للجروبات •","• للمستخدمين •"],"") & filters.private & devs, group = 2)
+@app.on_message(filters.command(["• للجروبات •","• للمستخدمين •","• للقنوات •"],"") & filters.private & devs, group = 2)
 async def broadcast_gr(c,msg):
     try:
         m = await c.ask(msg.chat.id, "• قم بارسال الرسالة التي تريد نشرها ◟")
-        if m.text in ["• للجروبات •" ,"• للمستخدمين •"]:
+        if m.text in ["• للجروبات •" ,"• للمستخدمين •", "• للقنوات •"]:
             m = await c.ask(msg.chat.id, "•عذرا قم بارسال الرسالة التي تريد نشرها ◟")
-        chats = await get_served_chats() if msg.text == "• للجروبات •" else await get_served_users()
+        if msg.text == "• للجروبات •":
+            chats = await get_served_chats() 
+        else:
+            chats = await get_served_users() if msg.text == "• للمستخدمين •" else await get_served_channel()
         x = 0
-        n = "chat_id" if msg.text == "• للجروبات •" else "user_id"
+        n = "user_id" if msg.text == "• للمستخدمين •" else "chat_id"
         for chat in chats:
             try:
                 if m.photo:
@@ -247,20 +253,26 @@ async def broadcast_gr(c,msg):
                 await asyncio.sleep(0.2)
             except:
                 pass
-        type = "جروب" if msg.text == "• للجروبات •" else "مستخدم"
+        if msg.text == "• للجروبات •":
+            type = "جروب"  
+        else:
+            type = "مستخدم" if msg.text == "• للمستخدمين •" else "قناة"
         await msg.reply(f"• تم ارسال الى {x} {type}")
     except Exception as e:
         await msg.reply(f"- حدث خطا -> {e}")    
 
-@app.on_message(filters.command(["• بالتوجيه للجروبات •", "• بالتوجيه للمستخدمين •"],"") & filters.private & devs, group = 2)
+@app.on_message(filters.command(["• بالتوجيه للجروبات •", "• بالتوجيه للمستخدمين •","• بالتوجيه للقنوات •"],"") & filters.private & devs, group = 2)
 async def broadcast_fr(c,msg):
     try:
         m = await c.ask(msg.chat.id, "• قم بارسال الرسالة التي تريد نشرها ◟")
-        if m.text in ["• بالتوجيه للجروبات •", "• بالتوجيه للمستخدمين •"]:
+        if m.text in ["• بالتوجيه للجروبات •", "• بالتوجيه للمستخدمين •","• بالتوجيه للقنوات •"]:
             m = await c.ask(msg.chat.id, "•عذرا قم بارسال الرسالة التي تريد نشرها ◟")
-        chats = await get_served_chats() if msg.text == "• بالتوجيه للجروبات •" else await get_served_users()
+        if msg.text == "• بالتوجيه للجروبات •":
+            chats = await get_served_chats() 
+        else:
+            chats = await get_served_users() if msg.text == "• بالتوجيه للمستخدمين •" else await get_served_channel()
         x = 0
-        n = "chat_id" if msg.text == "• بالتوجيه للجروبات •" else "user_id"
+        n = "user_id" if msg.text == "• بالتوجيه للمستخدمين •" else "chat_id"
         for chat in chats:
             try:
                 await m.forward(int(chat[n]))
@@ -268,7 +280,10 @@ async def broadcast_fr(c,msg):
                 await asyncio.sleep(0.2)
             except:
                 pass
-        type = "جروب" if msg.text == "• بالتوجيه للجروبات •" else "مستخدم"
+        if msg.text == "• بالتوجيه للجروبات •":
+            type = "جروب"  
+        else:
+            type = "مستخدم" if msg.text == "• بالتوجيه للمستخدمين •" else "قناة"
         await msg.reply(f"• تم ارسال الى {x} {type}")
     except Exception as e:
         await msg.reply(f"- حدث خطا -> {e}")    
@@ -277,21 +292,32 @@ async def broadcast_fr(c,msg):
 async def broadcast_bot_(c,msg):
     try:
         owner = await c.get_users(int(OWNER_ID))
+        text = f"<b>• بوت ميوزك قنوات وجروبات ، البوت يعمل بسرعة وجودة خارقة ، بدون تهنيج ولا تقطيع لان البوت شغال علي سيرفر لوحدو◟</b>\n\n<b>• ارفع البوت فـ قناتك او جروبك وجرب سرعة البوت بنفسك وشوف المميزات◟</b>\n\n<b>• يوزر البوت : @{c.me.username} ◟ </b>\n<b>• يوزر المطور : @{owner.username if owner.username else owner.mention} ◟</b>"
         chats = await get_served_chats() 
         x = 0
         for chat in chats:
             try:
-                await c.send_message(int(chat["chat_id"]),f"<b>• بوت ميوزك قنوات وجروبات ، البوت يعمل بسرعة وجودة خارقة ، بدون تهنيج ولا تقطيع لان البوت شغال علي سيرفر لوحدو◟</b>\n\n<b>• ارفع البوت فـ قناتك او جروبك وجرب سرعة البوت بنفسك وشوف المميزات◟</b>\n\n<b>• يوزر البوت : @{c.me.username} ◟ </b>\n<b>• يوزر المطور : @{owner.username if owner.username else owner.mention} ◟</b>", reply_markup=ikm([[ikb("𓏺 𝖺𝖣𝖣 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈u𝗉𝗌 .", url=f"https://t.me/{app.username}?startgroup=true")]]))
+                await c.send_message(int(chat["chat_id"]),text, reply_markup=ikm([[ikb("𓏺 𝖺𝖣𝖣 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈u𝗉𝗌 .", url=f"https://t.me/{app.username}?startgroup=true")]]))
                 x += 1
                 await asyncio.sleep(0.2)
             except Exception as e:
                 pass
         await msg.reply(f"• تم ارسال الى {x} جروب")
+        chats = await get_served_channel() 
+        x = 0
+        for chat in chats:
+            try:
+                await c.send_message(int(chat["chat_id"]),text, reply_markup=ikm([[ikb("𓏺 𝖺𝖣𝖣 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈u𝗉𝗌 .", url=f"https://t.me/{app.username}?startgroup=true")]]))
+                x += 1
+                await asyncio.sleep(0.2)
+            except Exception as e:
+                pass
+        await msg.reply(f"• تم ارسال الى {x} قناة")
         users = await get_served_users() 
         x = 0
         for chat in users:
             try:
-                await c.send_message(int(chat["user_id"]),f"<b>• بوت ميوزك قنوات وجروبات ، البوت يعمل بسرعة وجودة خارقة ، بدون تهنيج ولا تقطيع لان البوت شغال علي سيرفر لوحدو◟</b>\n\n<b>• ارفع البوت فـ قناتك او جروبك وجرب سرعة البوت بنفسك وشوف المميزات◟</b>\n\n<b>• يوزر البوت : @{c.me.username} ◟ </b>\n<b>• يوزر المطور : @{owner.username if owner.username else owner.mention} ◟</b>", reply_markup=ikm([[ikb("𓏺 𝖺𝖣𝖣 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈u𝗉𝗌 .", url=f"https://t.me/{app.username}?startgroup=true")]]))
+                await c.send_message(int(chat["user_id"]),text, reply_markup=ikm([[ikb("𓏺 𝖺𝖣𝖣 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈u𝗉𝗌 .", url=f"https://t.me/{app.username}?startgroup=true")]]))
                 x += 1
                 await asyncio.sleep(0.2)
             except Exception as e:
