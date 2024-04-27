@@ -46,7 +46,7 @@ async def stat_bot(c,msg):
     if msg.text == "• المستخدمين •":
         served_users = len(await get_served_users())
         return await msg.reply(f"<b>• عدد مستخدمين البوت : {served_users} ◟</b>")
-    elif msg.text == "• الجروبات •"
+    elif msg.text == "• الجروبات •":
         served_chats = len(await get_served_chats())
         return await msg.reply(f"<b>• عدد جروبات البوت : {served_chats} ◟</b>")
     else:
