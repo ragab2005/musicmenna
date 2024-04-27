@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message
-
+from pyrogram.enums import ChatType
 from AnonXMusic import app
 from AnonXMusic.utils.database import get_loop, set_loop
 from AnonXMusic.utils.decorators import AdminRightsCheck
@@ -8,7 +8,7 @@ from AnonXMusic.utils.inline import close_markup
 from config import BANNED_USERS
 
 
-@app.on_message(filters.command(["loop", "cloop"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["/loop", "/cloop","تكرار"],"") & ~filters.private & ~BANNED_USERS)
 @AdminRightsCheck
 async def admins(cli, message: Message, _, chat_id):
     usage = _["admin_17"]
@@ -25,7 +25,7 @@ async def admins(cli, message: Message, _, chat_id):
                 state = 10
             await set_loop(chat_id, state)
             return await message.reply_text(
-                text=_["admin_18"].format(state, message.from_user.mention),
+                text=_["admin_18"].format(state, message.from_user.mention if message.chat.type != ChatType.CHANNEL else "مشرف القناه"),
                 reply_markup=close_markup(_),
             )
         else:
@@ -33,13 +33,13 @@ async def admins(cli, message: Message, _, chat_id):
     elif state.lower() == "enable":
         await set_loop(chat_id, 10)
         return await message.reply_text(
-            text=_["admin_18"].format(state, message.from_user.mention),
+            text=_["admin_18"].format(state, message.from_user.mention if message.chat.type != ChatType.CHANNEL else "مشرف القناه"),
             reply_markup=close_markup(_),
         )
     elif state.lower() == "disable":
         await set_loop(chat_id, 0)
         return await message.reply_text(
-            _["admin_19"].format(message.from_user.mention),
+            _["admin_19"].format(message.from_user.mention if message.chat.type != ChatType.CHANNEL else "مشرف القناه"),
             reply_markup=close_markup(_),
         )
     else:

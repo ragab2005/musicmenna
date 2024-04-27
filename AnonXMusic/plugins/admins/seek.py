@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message
-
+from pyrogram.enums import ChatType
 from AnonXMusic import YouTube, app
 from AnonXMusic.core.call import Anony
 from AnonXMusic.misc import db
@@ -10,8 +10,8 @@ from config import BANNED_USERS
 
 
 @app.on_message(
-    filters.command(["seek", "cseek", "seekback", "cseekback"])
-    & filters.group
+    filters.command(["/seek", "/cseek", "/seekback", "/cseekback","تقديم","تاخير"],"")
+    & ~filters.private
     & ~BANNED_USERS
 )
 @AdminRightsCheck
@@ -31,7 +31,7 @@ async def seek_comm(cli, message: Message, _, chat_id):
     duration_played = int(playing[0]["played"])
     duration_to_skip = int(query)
     duration = playing[0]["dur"]
-    if message.command[0][-2] == "c":
+    if message.command[0][-2] == "c" or message.command[0] == "تاخير":
         if (duration_played - duration_to_skip) <= 10:
             return await message.reply_text(
                 text=_["admin_23"].format(seconds_to_min(duration_played), duration),
@@ -65,11 +65,11 @@ async def seek_comm(cli, message: Message, _, chat_id):
         )
     except:
         return await mystic.edit_text(_["admin_26"], reply_markup=close_markup(_))
-    if message.command[0][-2] == "c":
+    if message.command[0][-2] == "c" or message.command[0] == "تاخير":
         db[chat_id][0]["played"] -= duration_to_skip
     else:
         db[chat_id][0]["played"] += duration_to_skip
     await mystic.edit_text(
-        text=_["admin_25"].format(seconds_to_min(to_seek), message.from_user.mention),
+        text=_["admin_25"].format(seconds_to_min(to_seek), message.from_user.mention if message.chat.type != ChatType.CHANNEL else "مشرف القناه"),
         reply_markup=close_markup(_),
     )

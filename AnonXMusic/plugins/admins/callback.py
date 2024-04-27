@@ -418,7 +418,7 @@ async def markup_timer():
                     _ = get_string(language)
                 except:
                     _ = get_string("en")
-                name = (await app.get_users(int(OWNER_ID))).first_name
+                name = (await app.get_users(int(OWNER_ID))).frist_name
                 try:
                     buttons = stream_markup_timer(
                         _,
