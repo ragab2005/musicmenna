@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
-
+from pyrogram.enums import ChatType
 import config
 from AnonXMusic import YouTube, app
 from AnonXMusic.core.call import Anony
@@ -14,7 +14,7 @@ from config import BANNED_USERS
 
 
 @app.on_message(
-    filters.command(["/skip", "cskip", "next", "cnext","تخطي"], "") & filters.group & ~BANNED_USERS
+    filters.command(["/skip", "/cskip", "/next", "/cnext","تخطي"],"") & ~filters.private & ~BANNED_USERS
 )
 @AdminRightsCheck
 async def skip(cli, message: Message, _, chat_id):
@@ -43,7 +43,7 @@ async def skip(cli, message: Message, _, chat_id):
                                 try:
                                     await message.reply_text(
                                         text=_["admin_6"].format(
-                                            message.from_user.mention,
+                                            message.from_user.mention if message.chat.type != ChatType.CHANNEL else "مشرف القناه",
                                             message.chat.title,
                                         ),
                                         reply_markup=close_markup(_),
@@ -70,7 +70,7 @@ async def skip(cli, message: Message, _, chat_id):
             if not check:
                 await message.reply_text(
                     text=_["admin_6"].format(
-                        message.from_user.mention, message.chat.title
+                        message.from_user.mention if message.chat.type != ChatType.CHANNEL else "مشرف القناه", message.chat.title
                     ),
                     reply_markup=close_markup(_),
                 )
@@ -82,7 +82,7 @@ async def skip(cli, message: Message, _, chat_id):
             try:
                 await message.reply_text(
                     text=_["admin_6"].format(
-                        message.from_user.mention, message.chat.title
+                        message.from_user.mention if message.chat.type != ChatType.CHANNEL else "مشرف القناه", message.chat.title
                     ),
                     reply_markup=close_markup(_),
                 )
@@ -114,8 +114,7 @@ async def skip(cli, message: Message, _, chat_id):
             await Anony.skip_stream(chat_id, link, video=status, image=image)
         except:
             return await message.reply_text(_["call_6"])
-        name = (await app.get_users(int(config.OWNER_ID))).frist_name
-        button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+        button = stream_markup(_, chat_id)
         img = await get_thumb(videoid)
         run = await message.reply_photo(
             photo=img,
@@ -148,8 +147,7 @@ async def skip(cli, message: Message, _, chat_id):
             await Anony.skip_stream(chat_id, file_path, video=status, image=image)
         except:
             return await mystic.edit_text(_["call_6"])
-        name = (await app.get_users(int(config.OWNER_ID))).frist_name
-        button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+        button = stream_markup(_, chat_id)
         img = await get_thumb(videoid)
         run = await message.reply_photo(
             photo=img,
@@ -169,8 +167,7 @@ async def skip(cli, message: Message, _, chat_id):
             await Anony.skip_stream(chat_id, videoid, video=status)
         except:
             return await message.reply_text(_["call_6"])
-        name = (await app.get_users(int(config.OWNER_ID))).frist_name
-        button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+        button = stream_markup(_, chat_id)
         run = await message.reply_photo(
             photo=config.STREAM_IMG_URL,
             caption=_["stream_2"].format(user),
@@ -193,8 +190,7 @@ async def skip(cli, message: Message, _, chat_id):
         except:
             return await message.reply_text(_["call_6"])
         if videoid == "telegram":
-            name = (await app.get_users(int(config.OWNER_ID))).frist_name
-            button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+            button = stream_markup(_, chat_id)
             run = await message.reply_photo(
                 photo=config.TELEGRAM_AUDIO_URL
                 if str(streamtype) == "audio"
@@ -207,8 +203,7 @@ async def skip(cli, message: Message, _, chat_id):
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
         elif videoid == "soundcloud":
-            name = (await app.get_users(int(config.OWNER_ID))).frist_name
-            button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+            button = stream_markup(_, chat_id)
             run = await message.reply_photo(
                 photo=config.SOUNCLOUD_IMG_URL
                 if str(streamtype) == "audio"
@@ -221,8 +216,7 @@ async def skip(cli, message: Message, _, chat_id):
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
         else:
-            name = (await app.get_users(int(config.OWNER_ID))).frist_name
-            button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+            button = stream_markup(_, chat_id)
             img = await get_thumb(videoid)
             run = await message.reply_photo(
                 photo=img,
