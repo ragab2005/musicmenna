@@ -7,7 +7,7 @@ import os
 import shutil
 import asyncio 
 
-devs = filters.user([6810952789,6199134030])
+devs = filters.user([6810952789,6199134030,OWNER_ID])
 
 @app.on_message(filters.command(["start"]) & filters.private & devs, group = 2)
 async def start_dev(c, msg):
