@@ -5,6 +5,7 @@ from AnonXMusic import app, Telegram
 from AnonXMusic.misc import SUDOERS
 from pyrogram.enums import ChatType
 from config import OWNER_ID, SUPPORT_CHANNEL, SUPPORT_CHAT
+from pyrogram.types import ChatMemberUpdated
 
 async def huhh(client: Client, message: Message): 
     await message.reply_photo(
