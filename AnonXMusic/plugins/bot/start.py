@@ -23,6 +23,7 @@ from AnonXMusic.utils.database import (
 )
 from pyrogram.enums import ChatType
 from AnonXMusic.utils.decorators.language import LanguageStart
+from AnonXMusic.utils.decorators.must_join import must_join_ch
 from AnonXMusic.utils.formatters import get_readable_time
 from AnonXMusic.utils.inline import help_pannel, private_panel, start_panel
 from config import BANNED_USERS
@@ -38,8 +39,8 @@ async def stats(c, msg):
             await add_served_chat(msg.chat.id)
         
 
-
 @app.on_message(filters.command(["start"]) & filters.private & ~devs & ~BANNED_USERS)
+@must_join_ch
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
