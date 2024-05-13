@@ -11,6 +11,7 @@ from AnonXMusic.core.call import Anony
 from AnonXMusic.utils import seconds_to_min, time_to_seconds
 from AnonXMusic.utils.channelplay import get_channeplayCB
 from AnonXMusic.utils.decorators.language import languageCB
+from AnonXMusic.utils.decorators.must_join import must_join_ch
 from AnonXMusic.utils.decorators.play import PlayWrapper
 from AnonXMusic.utils.formatters import formats
 from AnonXMusic.utils.inline import (
@@ -43,6 +44,7 @@ from config import BANNED_USERS, lyrical
     )
     & ~BANNED_USERS
 )
+@must_join_ch
 @PlayWrapper
 async def play_commnd(
     client,
