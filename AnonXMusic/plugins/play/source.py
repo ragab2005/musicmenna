@@ -13,7 +13,7 @@ async def source(client: Client, message: Message):
             [
                 [
                 InlineKeyboardButton(
-               "𓏺 𝖺𝖣𝖣 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗉𝗌 .", url=f"https://t.me/{bot_username}?startgroup=true"),
+               "𓏺 𝖺𝖣𝖣 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗉𝗌 .", url=f"https://t.me/{client.me.username}?startgroup=true"),
                    ],
                    [
                    InlineKeyboardButton(
