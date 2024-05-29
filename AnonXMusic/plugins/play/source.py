@@ -1,6 +1,6 @@
 import asyncio
 from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import Message, InlineKeyboardMarkup, get_userbot, InlineKeyboardButton
 from AnonXMusic import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
 
 
