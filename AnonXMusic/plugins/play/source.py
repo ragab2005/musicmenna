@@ -25,10 +25,10 @@ async def source(client: Client, message: Message):
                     InlineKeyboardButton(
                        "‹ 𝖣𝖾𝗏¹ ›", user_id=6810952789),
                     InlineKeyboardButton(
-                        "‹ 𝖣𝖾𝗏² ›", user_id=6199134030),    
-                   InlineKeyboardButton(
+                        "‹ 𝖣𝖾𝗏² ›", user_id=6199134030),
                    ],
                    [
+                   InlineKeyboardButton(
                         "‹ اغلاق ›", callback_data="close"),
                ],
           ]
