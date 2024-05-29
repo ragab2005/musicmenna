@@ -5,7 +5,7 @@ from AnonXMusic import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, ap
 
 
 @app.on_message(filters.command(["سورس","السورس","براند"], ""))
-async def maker(client: Client, message: Message):
+async def source(client: Client, message: Message):
     await message.reply_photo(
         photo=f"https://telegra.ph/file/44b1318d300c651d14a45.jpg",
         caption=f"• 𝗧𝗵𝗲 𝗕𝗲𝘀𝘁 𝗦𝗼𝘂𝗿𝗰𝗲 𝗢𝗻 𝗧𝗲𝗹𝗲𝗴𝗮𝗺 🎸 .",
