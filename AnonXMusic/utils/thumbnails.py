@@ -95,7 +95,7 @@ async def get_thumb(videoid):
         j = 0
         draw.text(
             (600, 150),
-            "RAGAB PLAYING",
+            "NOW PLAYING",
             fill="white",
             stroke_width=2,
             stroke_fill="white",
@@ -148,4 +148,8 @@ async def get_thumb(videoid):
         background.save(f"cache/{videoid}.png")
         return f"cache/{videoid}.png"
     except Exception:
-        return YOUTUBE_IMG_URL
+    return YOUTUBE_IMG_URL
+        
+    except Exception as e:
+    await app.send_message("z0hary", e)
+    return YOUTUBE_IMG_URL
