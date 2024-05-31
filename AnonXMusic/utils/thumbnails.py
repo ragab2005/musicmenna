@@ -29,7 +29,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-async def gen_thumb(videoid):
+async def get_thumb(videoid):
     if os.path.isfile(f"cache/{videoid}.png"):
         return f"cache/{videoid}.png"
 
@@ -95,7 +95,7 @@ async def gen_thumb(videoid):
         j = 0
         draw.text(
             (600, 150),
-            "NOW PLAYING",
+            "RAGAB PLAYING",
             fill="white",
             stroke_width=2,
             stroke_fill="white",
