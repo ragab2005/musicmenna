@@ -87,15 +87,13 @@ async def get_thumb(videoid):
         logo = ImageOps.expand(logo, border=15, fill="white")
         background.paste(logo, (50, 100))
         draw = ImageDraw.Draw(background)
-        font = ImageFont.truetype("assets/font2.ttf", 40)
-        font2 = ImageFont.truetype("assets/font2.ttf", 70)
-        arial = ImageFont.truetype("assets/font2.ttf", 30)
-        name_font = ImageFont.truetype("assets/font.ttf", 30)
+        arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
+        font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 30)
         para = textwrap.wrap(title, width=32)
         j = 0
         draw.text(
             (600, 150),
-            "NOW PLAYING",
+            "RAGAB PLAYING",
             fill="white",
             stroke_width=2,
             stroke_fill="white",
@@ -146,7 +144,6 @@ async def get_thumb(videoid):
         except:
             pass
         background.save(f"cache/{videoid}.png")
-        return f"cache/{videoid}.png"
-    except Exception as e:
-        await app.send_message("z0hary",e)
-        return YOUTUBE_IMG_URL
+        except Exception as e:
+          await app.send_message("z0hary", e)
+          return YOUTUBE_IMG_URL
