@@ -1,15 +1,24 @@
+#
+# Copyright (C) 2021-2022 by TeamYukki@Github, < https://github.com/TeamYukki >.
+#
+# This file is part of < https://github.com/TeamYukki/YukkiMusicBot > project,
+# and is released under the "GNU v3.0 License Agreement".
+# Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
+#
+# All rights reserved.
+
 import os
 import re
+import textwrap
 
 import aiofiles
 import aiohttp
-from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
-from unidecode import unidecode
+from PIL import (Image, ImageDraw, ImageEnhance, ImageFilter,
+                 ImageFont, ImageOps)
 from youtubesearchpython.__future__ import VideosSearch
 
+from config import YOUTUBE_IMG_URL, OWNER_ID 
 from AnonXMusic import app
-from config import YOUTUBE_IMG_URL
-
 
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
@@ -20,9 +29,9 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-async def gen_thumb(videoid, photo):
-    if os.path.isfile(f"{photo}.png"):
-        return f"{photo}.png"
+async def gen_thumb(videoid):
+    if os.path.isfile(f"cache/{videoid}.png"):
+        return f"cache/{videoid}.png"
 
     url = f"https://www.youtube.com/watch?v={videoid}"
     try:
@@ -52,38 +61,41 @@ async def gen_thumb(videoid, photo):
             async with session.get(thumbnail) as resp:
                 if resp.status == 200:
                     f = await aiofiles.open(
-                        f"thumb{videoid}.png", mode="wb"
+                        f"cache/thumb{videoid}.png", mode="wb"
                     )
                     await f.write(await resp.read())
                     await f.close()
-
-        youtube = Image.open(f"thumb{videoid}.png")
-        Shadow = Image.open(f"{photo}")
+        wxyz = await app.download_media(
+            (await app.get_users(int(OWNER_ID))).photo.big_file_id,
+              file_name=f"{OWNER_ID}.jpg",
+        )
+        wxy = Image.open(wxyz)
+        youtube = Image.open(f"cache/thumb{videoid}.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(5))
+        background = image2.filter(filter=ImageFilter.BoxBlur(20))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
-        Xcenter = Shadow.width / 2
-        Ycenter = Shadow.height / 2
+        Xcenter = wxy.width / 2
+        Ycenter = wxy.height / 2
         x1 = Xcenter - 250
         y1 = Ycenter - 250
         x2 = Xcenter + 250
         y2 = Ycenter + 250
-        logo = Shadow.crop((x1, y1, x2, y2))
-        logo.thumbnail((520, 520), Image.LANCZOS)
+        logo = wxy.crop((x1, y1, x2, y2))
+        logo.thumbnail((520, 520), Image.ANTIALIAS)
         logo = ImageOps.expand(logo, border=15, fill="white")
         background.paste(logo, (50, 100))
         draw = ImageDraw.Draw(background)
-        font = ImageFont.truetype(f"AnonXMusic/assets/font.ttf", 40)
-        font2 = ImageFont.truetype(f"AnonXMusic/assets/font.ttf", 70)
-        arial = ImageFont.truetype(f"AnonXMusic/assets/font.ttf", 30)
-        name_font = ImageFont.truetype(f"AnonXMusic/assets/font.ttf", 30)
+        font = ImageFont.truetype("assets/font2.ttf", 40)
+        font2 = ImageFont.truetype("assets/font2.ttf", 70)
+        arial = ImageFont.truetype("assets/font2.ttf", 30)
+        name_font = ImageFont.truetype("assets/font.ttf", 30)
         para = textwrap.wrap(title, width=32)
         j = 0
         draw.text(
             (600, 150),
-            "BRAND PLAYING",
+            "NOW PLAYING",
             fill="white",
             stroke_width=2,
             stroke_fill="white",
@@ -130,101 +142,10 @@ async def gen_thumb(videoid, photo):
             font=arial,
         )
         try:
-            os.remove(f"{photo}")
-            os.remove(f"thumb{videoid}.png")
+            os.remove(f"cache/thumb{videoid}.png")
         except:
             pass
-        background.save(f"{photo}.png")
-        return f"{photo}.png"
-    except Exception:
-        return FAILED 
-
-
-async def get_thumb(videoid):
-    if os.path.isfile(f"cache/{videoid}.png"):
+        background.save(f"cache/{videoid}.png")
         return f"cache/{videoid}.png"
-
-        async with aiohttp.ClientSession() as session:
-            async with session.get(thumbnail) as resp:
-                if resp.status == 200:
-                    f = await aiofiles.open(f"thumb{BOT_USERNAME}.png", mode="wb")
-                    await f.write(await resp.read())
-                    await f.close()
-
-        youtube = Image.open(f"{photo}")
-        a = Image.open(f"{photo}")
-        image1 = changeImageSize(1280, 720, youtube)
-        image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(5))
-        enhancer = ImageEnhance.Brightness(background)
-        background = enhancer.enhance(0.6)
-        Xcenter = a.width / 2
-        Ycenter = a.height / 2
-        x1 = Xcenter - 250
-        y1 = Ycenter - 250
-        x2 = Xcenter + 250
-        y2 = Ycenter + 250
-        logo = a.crop((x1, y1, x2, y2))
-        logo.thumbnail((520, 520), Image.ANTIALIAS)
-        logo = ImageOps.expand(logo, border=15, fill="white")
-        background.paste(logo, (50, 100))
-        draw = ImageDraw.Draw(background)
-        font = ImageFont.truetype(f"AnonXMusic/assets/font.ttf", 40)
-        font2 = ImageFont.truetype(f"AnonXMusic/assets/font.ttf", 70)
-        arial = ImageFont.truetype(f"AnonXMusic/assets/font.ttf", 30)
-        name_font = ImageFont.truetype(f"AnonXMusic/AnonXMusic/font.ttf", 30)
-        draw.text(
-            (600, 150),
-            "Music Player BoT",
-            fill="white",
-            stroke_width=2,
-            stroke_fill="white",
-            font=font2,
-        )
-        draw.text(
-            (600, 340),
-            f"Dev: Ragab",
-            fill="white",
-            stroke_width=1,
-            stroke_fill="white",
-            font=font,
-        )
-        draw.text(
-            (600, 280),
-            f"Playing Music & Video",
-            fill="white",
-            stroke_width=1,
-            stroke_fill="white",
-            font=font,
-        )
-
-        draw.text(
-            (600, 400),
-            f"users: {users}",
-            (255, 255, 255),
-            font=arial,
-        )
-        draw.text(
-            (600, 450),
-            f"chats: {chats}",
-            (255, 255, 255),
-            font=arial,
-        )
-        draw.text(
-            (600, 500),
-            f"Version: 0.2.0",
-            (255, 255, 255),
-            font=arial,
-        )
-        draw.text(
-            (600, 550),
-            f"BoT: t.me\{BOT_USERNAME}",
-            (255, 255, 255),
-            font=arial,
-        )
-        try:
-            os.remove(f"thumb{BOT_USERNAME}.png")
-        except:
-            pass
-        background.save(f"{BOT_USERNAME}.png")
-        return f"{BOT_USERNAME}.png"
+    except Exception:
+        return YOUTUBE_IMG_URL
