@@ -140,15 +140,9 @@ async def gen_thumb(videoid, photo):
         return FAILED 
 
 
-async def gen_bot(c: Client, BOT_USERNAME, photo):
-        if os.path.isfile(f"{BOT_USERNAME}.png"):
-           return f"{BOT_USERNAME}.png"
-        users = len(r.smembers(f"{BOT_ID}:users"))
-        chats = len(r.smembers(f"{BOT_ID}:groups"))
-        url = f"https://www.youtube.com/watch?v=gKA2XFkJZhI"
-        results = VideosSearch(url, limit=1)
-        for result in (await results.next())["result"]:
-            thumbnail = result["thumbnails"][0]["url"].split("?")[0]
+async def get_thumb(videoid):
+    if os.path.isfile(f"cache/{videoid}.png"):
+        return f"cache/{videoid}.png"
 
         async with aiohttp.ClientSession() as session:
             async with session.get(thumbnail) as resp:
