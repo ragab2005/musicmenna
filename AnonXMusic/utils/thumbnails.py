@@ -144,6 +144,6 @@ async def get_thumb(videoid):
         except:
             pass
         background.save(f"cache/{videoid}.png")
-        except Exception as e:
+    except Exception as e:
           await app.send_message("z0hary", e)
           return YOUTUBE_IMG_URL
