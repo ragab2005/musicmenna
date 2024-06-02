@@ -18,7 +18,7 @@ from PIL import (Image, ImageDraw, ImageEnhance, ImageFilter,
 from youtubesearchpython.__future__ import VideosSearch
 
 from config import YOUTUBE_IMG_URL, OWNER_ID
-from AnonX import app
+from AnonXMusic import app
 
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
