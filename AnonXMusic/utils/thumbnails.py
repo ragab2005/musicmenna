@@ -65,7 +65,7 @@ async def get_thumb(videoid):
                     )
                     await f.write(await resp.read())
                     await f.close()
-        owner = OWNER_ID[0]
+        owner = int(OWNER_ID)
         wxyz = await app.download_media(
               (await app.get_users(owner)).photo.big_file_id,
               file_name=f"{owner}.jpg",
