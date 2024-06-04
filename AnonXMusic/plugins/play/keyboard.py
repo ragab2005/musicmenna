@@ -11,7 +11,7 @@ devs = filters.user([6810952789,6199134030,OWNER_ID])
 
 @app.on_message(filters.command(["start"]) & filters.private & devs, group = 2)
 async def start_dev(c, msg):
-    keyboard = ReplyKeyboardMarkup([[("• حذف الكيبورد •")], [("• مطور السورس •")], [("• قسم الاحصائيات •"), ("• قسم المساعد •")], [("• قسم الاشتراك الاجباري •"), ("• قسم الاذاعه •")], [("• اعادة التشغيل •")], [("• الغاء •")]], resize_keyboard=True)
+    keyboard = ReplyKeyboardMarkup([[("حذف الكيبورد")], [("مطور السورس")], [("قسم الاحصائيات"), ("قسم المساعد")], [("قسم الاشتراك الاجباري"), ("قسم الاذاعه")], [("اعادة التشغيل")], [("الغاء")]], resize_keyboard=True)
     await msg.reply("<b>صلي على النبي وتبسم ♥️✨</b>")
     await msg.reply("اهلا بك حبيبي المطور", reply_markup = keyboard)
     
