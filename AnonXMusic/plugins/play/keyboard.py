@@ -21,19 +21,19 @@ async def delete_keyboard(c,msg):
 
 @app.on_message(filters.command(["قسم الاحصائيات"],"") & filters.private & devs, group = 2)
 async def stats_bot(c,msg):
-    await msg.reply("اهلا بك عزيزي المطور بقسم الاحصائيات", reply_markup = ReplyKeyboardMarkup([[("• الجروبات •"), ("• المستخدمين •"), ("• القنوات •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("اهلا بك عزيزي المطور بقسم الاحصائيات", reply_markup = ReplyKeyboardMarkup([[("الجروبات"), ("المستخدمين"), ("القنوات")], ["رجوع للقائمة الرئيسية"]], resize_keyboard=True))
     
 @app.on_message(filters.command(["قسم المساعد"],"") & filters.private & devs, group = 2)
 async def asisstant_bot(c,msg):
-    await msg.reply("اهلا بك عزيزي المطور بقسم الاك المساعد", reply_markup = ReplyKeyboardMarkup([[("• تغيير الاسم الاول •"), ("• تغيير الاسم الثاني •")], [("• تغيير البايو •")], [("• اضف صورة •"), ("• مسح الصورة •")], [("• اذاعة •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("اهلا بك عزيزي المطور بقسم الاك المساعد", reply_markup = ReplyKeyboardMarkup([[("تغيير الاسم الاول"), ("تغيير الاسم الثاني")], [("تغيير البايو")], [("اضف صورة"), ("مسح الصورة")], [("اذاعة")], ["رجوع للقائمة الرئيسية"]], resize_keyboard=True))
 
 @app.on_message(filters.command(["قسم الاشتراك الاجباري"],"") & filters.private & devs, group = 2)
 async def force_sub_bot(c,msg):
-    await msg.reply("اهلا بك عزيزي المطور بقسم الاشتراك الاجباري", reply_markup = ReplyKeyboardMarkup([[("• قناة الاشتراك •")], [("• اضف قناة/جروب •"), ("• حذف القناه/الجروب •")], [("• تفعيل الاشتراك •"), ("• تعطيل الاشتراك •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("اهلا بك عزيزي المطور بقسم الاشتراك الاجباري", reply_markup = ReplyKeyboardMarkup([[("قناة الاشتراك")], [("اضف قناة/جروب"), ("حذف القناه/الجروب")], [("تفعيل الاشتراك"), ("تعطيل الاشتراك")], ["رجوع للقائمة الرئيسية"]], resize_keyboard=True))
 
 @app.on_message(filters.command(["قسم الاذاعه"],"") & filters.private & devs, group = 2)
 async def broadcast_bot(c,msg):
-    await msg.reply("اهلا بك عزيزي المطور بقسم الاذاعه", reply_markup = ReplyKeyboardMarkup([[("• للجروبات •"), ("• للمستخدمين •"), ("• للقنوات •")], [("• بالتوجيه للجروبات •"), ("• بالتوجيه للمستخدمين •"), ("• بالتوجيه للقنوات •")], [("• ترويج البوت •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("اهلا بك عزيزي المطور بقسم الاذاعه", reply_markup = ReplyKeyboardMarkup([[("للجروبات"), ("للمستخدمين"), ("للقنوات")], [("بالتوجيه للجروبات"), ("بالتوجيه للمستخدمين"), ("بالتوجيه للقنوات")], [("ترويج البوت")], ["رجوع للقائمة الرئيسية"]], resize_keyboard=True))
 
 @app.on_message(filters.command(["رجوع للقائمة الرئيسية"],"") & filters.private & devs, group = 2)
 async def return_bot(c,msg):
@@ -292,7 +292,7 @@ async def broadcast_fr(c,msg):
 async def broadcast_bot_(c,msg):
     try:
         owner = await c.get_users(int(OWNER_ID))
-        text = f"بوت ميوزك قنوات وجروبات ، البوت يعمل بسرعة وجودة خارقة ، بدون تهنيج ولا تقطيع لان البوت شغال علي سيرفر لوحدو\n\nارفع البوت فـ قناتك او جروبك وجرب سرعة البوت بنفسك وشوف المميزا\n\nيوزر البوت : @{c.me.username}  </b>\nيوزر المطور : @{owner.username if owner.username else owner.mention} ◟</b>"
+        text = f"بوت ميوزك قنوات وجروبات ، البوت يعمل بسرعة وجودة خارقة ، بدون تهنيج ولا تقطيع لان البوت شغال علي سيرفر لوحدو\n\nارفع البوت فـ قناتك او جروبك وجرب سرعة البوت بنفسك وشوف المميزا\n\nيوزر البوت : @{c.me.username}  </b>\nيوزر المطور : @{owner.username if owner.username else owner.mention}</b>"
         chats = await get_served_chats() 
         x = 0
         for chat in chats:
