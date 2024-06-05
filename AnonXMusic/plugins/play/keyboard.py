@@ -21,7 +21,7 @@ async def delete_keyboard(c,msg):
 
 @app.on_message(filters.command(["قسم الاحصائيات"],"") & filters.private & devs, group = 2)
 async def stats_bot(c,msg):
-    await msg.reply("اهلا بك عزيزي المطور بقسم الاحصائيات", reply_markup = ReplyKeyboardMarkup([[("الجروبات"), ("المستخدمين"), ("القنوات")], ["رجوع للقائمة الرئيسية"]], resize_keyboard=True))
+    await msg.reply("اهلا بك عزيزي المطور بقسم الاحصائيات", reply_markup = ReplyKeyboardMarkup([[("الجروبات"), ("المستخدمين"), ("القنوات")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
     
 @app.on_message(filters.command(["قسم المساعد"],"") & filters.private & devs, group = 2)
 async def asisstant_bot(c,msg):
@@ -183,7 +183,7 @@ async def dis_ch_must(c,msg):
 
 @app.on_message(filters.command(["مطور السورس"],"") & filters.private & devs, group = 2)
 async def devs_source(c,msg):
-    await msg.reply("اهلا بك عزيزي المطور لرؤية معلومات المطورين قم بالضغط ع الاذرار بالاسفل", reply_markup = ReplyKeyboardMarkup([[("• المطور الاول •"), ("• المطور الثاني •")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("اهلا بك عزيزي المطور لرؤية معلومات المطورين قم بالضغط ع الاذرار بالاسفل", reply_markup = ReplyKeyboardMarkup([[("المطور الاول"), ("المطور الثاني")], ["رجوع للقائمة الرئيسية"]], resize_keyboard=True))
 
 @app.on_message(filters.command(["المطور الاول","المطور الثاني"],"") & filters.private & devs, group = 2)
 async def dev_source(c,msg):
@@ -292,7 +292,7 @@ async def broadcast_fr(c,msg):
 async def broadcast_bot_(c,msg):
     try:
         owner = await c.get_users(int(OWNER_ID))
-        text = f"بوت ميوزك قنوات وجروبات ، البوت يعمل بسرعة وجودة خارقة ، بدون تهنيج ولا تقطيع لان البوت شغال علي سيرفر لوحدو\n\nارفع البوت فـ قناتك او جروبك وجرب سرعة البوت بنفسك وشوف المميزا\n\nيوزر البوت : @{c.me.username}  </b>\nيوزر المطور : @{owner.username if owner.username else owner.mention}</b>"
+        text = f"بوت ميوزك قنوات وجروبات ، البوت يعمل بسرعة وجودة خارقة ، بدون تهنيج ولا تقطيع لان البوت شغال علي سيرفر لوحدو\n\nارفع البوت فـ قناتك او جروبك وجرب سرعة البوت بنفسك وشوف المميزات\n\nيوزر البوت : @{c.me.username}\nيوزر المطور : @{owner.username if owner.username else owner.mention}"
         chats = await get_served_chats() 
         x = 0
         for chat in chats:
