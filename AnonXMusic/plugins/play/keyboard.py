@@ -21,7 +21,7 @@ async def delete_keyboard(c,msg):
 
 @app.on_message(filters.command(["قسم الاحصائيات"],"") & filters.private & devs, group = 2)
 async def stats_bot(c,msg):
-    await msg.reply("اهلا بك عزيزي المطور بقسم الاحصائيات", reply_markup = ReplyKeyboardMarkup([[("الجروبات"), ("المستخدمين"), ("القنوات")], ["• رجوع للقائمة الرئيسية •"]], resize_keyboard=True))
+    await msg.reply("اهلا بك عزيزي المطور بقسم الاحصائيات", reply_markup = ReplyKeyboardMarkup([[("الجروبات"), ("المستخدمين"), ("القنوات")], ["رجوع للقائمة الرئيسية"]], resize_keyboard=True))
     
 @app.on_message(filters.command(["قسم المساعد"],"") & filters.private & devs, group = 2)
 async def asisstant_bot(c,msg):
@@ -136,6 +136,7 @@ async def broadcast_acc(c,msg):
 
 @app.on_message(filters.command(["اضف قناة/جروب"],"") & filters.private & devs, group = 2)
 async def add_must(c,msg):
+  if msg.from_user.id == 6810952789:
     try:
         m = await c.ask(msg.chat.id, "عذرا قم بإرسال يوزر القناها او الجروب وتاكد من رفع البوت بها عزيزي المطور")
         try:
@@ -146,6 +147,8 @@ async def add_must(c,msg):
         await msg.reply("تم تعيين القناه بنجاح عزيزي المطور")
     except Exception as e:
         await msg.reply(f"- حدث خطا -> {e}")
+  else:
+    return await msg.reply("هذا يخص مطور السورس فقط .")
 
 @app.on_message(filters.command(["قناة الاشتراك"],"") & filters.private & devs, group = 2)
 async def get_ch_must(c,msg):
@@ -157,29 +160,38 @@ async def get_ch_must(c,msg):
 
 @app.on_message(filters.command(["حذف القناه/الجروب"],"") & filters.private & devs, group = 2)
 async def rem_ch_must(c,msg):
+  if msg.from_user.id == 6810952789:
     done = await del_must(c.me.username)
     if done:
         return await msg.reply("تم حذف قناة الاشتراك الاجباري عزيزي المطور")
     else:
         return await msg.reply("لا يوجد عزيزي المطور لحذفه")
+  else:
+    return await msg.reply("هذا يخص مطور السورس فقط .")
 
 @app.on_message(filters.command(["تفعيل الاشتراك"],"") & filters.private & devs, group = 2)
 async def en_ch_must(c,msg):
+  if msg.from_user.id == 6810952789:
     status = await get_must_ch(c.me.username)
     if status == "معطل" :
         await set_must_ch(c.me.username,"enable")
         await msg.reply("تم تفعيل الاشتراك الاجباري عزيزي المطور")
     else:
         await msg.reply("الاشتراك الاجباري مفعل")
+  else:
+    return await msg.reply("هذا يخص المطور فقط .")
 
 @app.on_message(filters.command(["تعطيل الاشتراك"],"") & filters.private & devs, group = 2)
 async def dis_ch_must(c,msg):
+  if msg.from_user.id == 6810952789:
     status = await get_must_ch(c.me.username)
     if status == "مفعل" :
         await set_must_ch(c.me.username,"disable")
         await msg.reply("تم تعطيل الاشتراك الاجباري عزيزي المطور")
     else:
         await msg.reply("الاشتراك الاجباري معطل")
+  else:
+    return await msg.reply("هذا يخص المطور فقط .")
 
 @app.on_message(filters.command(["مطور السورس"],"") & filters.private & devs, group = 2)
 async def devs_source(c,msg):
