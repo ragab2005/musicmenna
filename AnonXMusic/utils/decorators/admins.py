@@ -173,7 +173,7 @@ def ActualAdminCB(mystic):
         if await is_maintenance() is False:
             if CallbackQuery.from_user.id not in SUDOERS:
                 return await CallbackQuery.answer(
-                    f"{app.username} احنا صايمين يصحبي اتقي الله وروح صلي  قناة السورس .",
+                    f"{app.mention} احنا صايمين يصحبي اتقي الله وروح صلي  قناة السورس .",
                     show_alert=True,
                 )
         try:
