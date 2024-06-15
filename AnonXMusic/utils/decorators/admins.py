@@ -168,12 +168,7 @@ def ActualAdminCB(mystic):
         if await is_maintenance() is False:
             if CallbackQuery.from_user.id not in SUDOERS:
                 return await CallbackQuery.answer(
-                    def ActualAdminCB(mystic):
-    async def wrapper(client, CallbackQuery):
-        if await is_maintenance() is False:
-            if CallbackQuery.from_user.id not in SUDOERS:
-                return await CallbackQuery.answer(
-                    f"{app.mention} احنا صايمين يصحبي اتقي الله وروح صلي  قناة السورس .",
+                    f"{app.mention} اتقي ابله احنا صايمين قوم صلي قناة السورس\n صلي علي النبي.",
                     show_alert=True,
                 )
         try:
