@@ -304,8 +304,8 @@ async def broadcast_fr(c,msg):
 async def broadcast_bot_(c,msg):
     try:
         owner = await c.get_users(int(OWNER_ID))
-        text = f"بوت ميوزك قنوات وجروبات ، البوت يعمل بسرعة وجودة خارقة ، بدون تهنيج ولا تقطيع لان البوت شغال علي سيرفر لوحدو\n\nارفع البوت فـ قناتك او جروبك وجرب سرعة البوت بنفسك وشوف المميزات\n\nيوزر البوت : @{c.me.username}\nيوزر المطور : @{owner.username if owner.username else owner.mention}"
-        chats = await get_served_chats() 
+        text = f"✭ آقؤي بوت ( MUSiC ) في آلتيليجرام مميزات جميلة جدآ .\n✭ تقدر من خلال البوتـآت تشغل : ( اغاني ، قران ، افلام )  .\nوالاوآمـر سهلة اوي ومفيهآش اي صع ـوبة :\n1: لو حابب تشغل اغاني : اكتب ( تشغيل او شغل)  .\n2: لو حابب تشغل آفلام : اكتب ( فيديو او فيد)  .\n3: لو حابب تنزل حاجة من آليوتيوب : اكتب ( تنزيل او نزل ) .\n✭مفيش تهنيج إو تقطيع ابدآ .\n✭سرعة فآئقة في المكالمة الصؤتية .\n\n البوت : ( @{c.me.username} )\nيوزر المطور : ( @{owner.username if owner.username else owner.mention} )"
+        chats = await get_served_chats()
         x = 0
         for chat in chats:
             try:
