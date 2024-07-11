@@ -1,6 +1,6 @@
 {
     "name": "سورس براند",
-    "description": "افضل سورس ميوزك لـ تشغيل في المحادث الصوتية.",
+    "description": "افضل سورس ميوزك لـ تشغيل في المحادث الصوتية .",
     "logo": "https://graph.org/file/22147c3cd366c40f2865b.jpg",
     "keywords": [
     "python3",
@@ -14,12 +14,12 @@
     "env": {
       "API_ID": {
         "description": "Get this value from https://my.telegram.org",
-        "value": "95a08bc24a7c58c46b3fb62c61851cd9",
+        "value": "26152224",
         "required": true
       },
       "API_HASH": {
         "description": "Get this value from https://my.telegram.org",
-        "value": "26152224",
+        "value": "95a08bc24a7c58c46b3fb62c61851cd9",
         "required": true
       },
       "BOT_TOKEN": {
