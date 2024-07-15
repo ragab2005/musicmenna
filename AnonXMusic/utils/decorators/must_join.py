@@ -17,6 +17,6 @@ def must_join_ch(zohary):
         if data["ok"] and data["result"]["status"] in ["member","creator","administrator"]:
           return await zohary(c,msg)
         else:
-          return await msg.reply(f"- يجب الاشتراك بالقناه اولا لاستخدام البوت \n - @{i} .",disable_web_page_preview=True,reply_markup=ikm([[ikb("اضغط للاشتراك بالقناه.",url=f"https://t.me/{i}")],]))
+          return await msg.reply(f"• يجب الاشتراك بالقناه اولا لاستخدام البوت \n ⤹ @{i} .",disable_web_page_preview=True,reply_markup=ikm([[ikb("اضغط للاشتراك بالقناه.",url=f"https://t.me/{i}")],]))
     return await zohary(c,msg)
   return ch_user
