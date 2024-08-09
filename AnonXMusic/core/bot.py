@@ -29,7 +29,7 @@ class Anony(Client):
         try:
             await self.send_message(
                 chat_id=config.LOGGER_ID,
-                text=f"<u><b> {self.mention} تم تشغيل البوت :</b><u>\n\nايدي البوت : <code>{self.id}</code>\اسم البوت : {self.name}\يوز البوت : @{self.username}",
+                text=f"<u><b> تم تشغيل البوت ",
             )
         except (errors.ChannelInvalid, errors.PeerIdInvalid):
             LOGGER(__name__).error(
