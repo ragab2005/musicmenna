@@ -1,16 +1,17 @@
-from AnonXMusic.core.bot import Anony
-from AnonXMusic.core.dir import dirr
-from AnonXMusic.core.git import git
-from AnonXMusic.core.userbot import Userbot
-from AnonXMusic.misc import dbb, heroku
+from YousefMusic.core.bot import Zelzaly
+from YousefMusic.core.dir import dirr
+from YousefMusic.core.git import git
+from YousefMusic.core.userbot import Userbot
+from YousefMusic.misc import dbb, heroku
 
 from .logging import LOGGER
 
 dirr()
+git()
 dbb()
 heroku()
 
-app = Anony()
+app = Zelzaly()
 userbot = Userbot()
 
 
