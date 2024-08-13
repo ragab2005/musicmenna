@@ -37,6 +37,8 @@ from AnonXMusic.utils.inline.play import stream_markup
 from AnonXMusic.utils.stream.autoclear import auto_clean
 from AnonXMusic.utils.thumbnails import get_thumb
 from strings import get_string
+import os, requests
+
 
 autoend = {}
 counter = {}
@@ -51,7 +53,7 @@ async def _clear_(chat_id):
 class Call(PyTgCalls):
     def __init__(self):
         self.userbot1 = Client(
-            name="AnonXAss1",
+            name="ZelzaLAss1",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING1),
@@ -61,7 +63,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot2 = Client(
-            name="AnonXAss2",
+            name="ZelzaLAss2",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING2),
@@ -71,7 +73,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot3 = Client(
-            name="AnonXAss3",
+            name="ZelzaLAss3",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING3),
@@ -81,7 +83,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot4 = Client(
-            name="AnonXAss4",
+            name="ZelzaLAss4",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING4),
@@ -91,7 +93,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot5 = Client(
-            name="AnonXAss5",
+            name="ZelzaLAss5",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING5),
@@ -392,8 +394,7 @@ class Call(PyTgCalls):
                         text=_["call_6"],
                     )
                 img = await get_thumb(videoid)
-                name = (await app.get_users(int(config.OWNER_ID))).first_name
-                button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+                button = stream_markup(_, chat_id)
                 run = await app.send_photo(
                     chat_id=original_chat_id,
                     photo=img,
@@ -439,8 +440,7 @@ class Call(PyTgCalls):
                         text=_["call_6"],
                     )
                 img = await get_thumb(videoid)
-                name = (await app.get_users(int(config.OWNER_ID))).first_name
-                button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+                button = stream_markup(_, chat_id)
                 await mystic.delete()
                 run = await app.send_photo(
                     chat_id=original_chat_id,
@@ -472,8 +472,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_6"],
                     )
-                name = (await app.get_users(int(config.OWNER_ID))).first_name
-                button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+                button = stream_markup(_, chat_id)
                 run = await app.send_photo(
                     chat_id=original_chat_id,
                     photo=config.STREAM_IMG_URL,
@@ -502,8 +501,7 @@ class Call(PyTgCalls):
                         text=_["call_6"],
                     )
                 if videoid == "telegram":
-                    name = (await app.get_users(int(config.OWNER_ID))). first_name
-                    button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+                    button = stream_markup(_, chat_id)
                     run = await app.send_photo(
                         chat_id=original_chat_id,
                         photo=config.TELEGRAM_AUDIO_URL
@@ -517,8 +515,7 @@ class Call(PyTgCalls):
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "tg"
                 elif videoid == "soundcloud":
-                    name = (await app.get_users(int(config.OWNER_ID))).first_name
-                    button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+                    button = stream_markup(_, chat_id)
                     run = await app.send_photo(
                         chat_id=original_chat_id,
                         photo=config.SOUNCLOUD_IMG_URL,
@@ -531,8 +528,7 @@ class Call(PyTgCalls):
                     db[chat_id][0]["markup"] = "tg"
                 else:
                     img = await get_thumb(videoid)
-                    name = (await app.get_users(int(config.OWNER_ID))).first_name
-                    button = stream_markup(_, chat_id, name, int(config.OWNER_ID))
+                    button = stream_markup(_, chat_id)
                     run = await app.send_photo(
                         chat_id=original_chat_id,
                         photo=img,
@@ -562,7 +558,7 @@ class Call(PyTgCalls):
         return str(round(sum(pings) / len(pings), 3))
 
     async def start(self):
-        LOGGER(__name__).info("Starting PyTgCalls Client...\n")
+        LOGGER("ميــوزك زدثــون").info("جارِ تحميل مكاتب الميوزك . . .\n")
         if config.STRING1:
             await self.one.start()
         if config.STRING2:
@@ -604,4 +600,4 @@ class Call(PyTgCalls):
             await self.change_stream(client, update.chat_id)
 
 
-Anony = Call()
+Zelzaly = Call()
