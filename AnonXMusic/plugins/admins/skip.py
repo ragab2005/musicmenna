@@ -1,10 +1,9 @@
-from AnonXMusic.plugins.play.filters import command
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 import config
 from AnonXMusic import YouTube, app
-from AnonXMusic.core.call import Zelzaly
+from AnonXMusic.core.call import Anony
 from AnonXMusic.misc import db
 from AnonXMusic.utils.database import get_loop
 from AnonXMusic.utils.decorators import AdminRightsCheck
